@@ -1,0 +1,23 @@
+# General
+.DS_Store
+.env
+*.log
+
+# Node.js
+node_modules
+npm-debug.log*
+
+# keys
+certificates/*.pem
+
+# Client
+dist/
+coverage/
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
