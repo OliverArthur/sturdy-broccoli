@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "./node_modules/.bin/nodemon -w index.js",
+    "serve": "./node_modules/.bin/nodemon -w index.js -w routes -w server",
     "lint": "standard",
     "lint:fix": "standard --fix; exit 0;"
   },
