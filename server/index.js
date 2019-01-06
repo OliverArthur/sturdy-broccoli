@@ -1,13 +1,13 @@
-/**
- * Server file
- */
-
 // dependecies
 const url = require('url')
 const StringDecoder = require('string_decoder').StringDecoder
+const { handlers, router } = require('../routes')
 
+/**
+ * @class Server
+ */
 class Server {
-  static init (req, res, router, handlers) {
+  static init (req, res) {
     // get the url and parse it
     const parseUrl = url.parse(req.url, true)
 
@@ -37,7 +37,7 @@ class Server {
 
       // choose the handler the request should go, if one is not found
       // use the notFound handler
-      const chosenHandler = typeof (router[trimmedPath]) !== 'undefined'
+      const handler = typeof (router[trimmedPath]) !== 'undefined'
         ? router[trimmedPath]
         : handlers.notFound
 
@@ -52,7 +52,7 @@ class Server {
       }
 
       // route the request to the handler specified in the router
-      chosenHandler(data, (statusCode, payload) => {
+      handler(data, (statusCode, payload) => {
         // use the status code called by the handler,
         // or default to 200
         statusCode = typeof (statusCode) === 'number' ? statusCode : 200
@@ -68,8 +68,6 @@ class Server {
         res.setHeader('Content-Type', 'application/json')
         res.writeHead(statusCode)
         res.end(payloadString)
-        // log the request path
-        console.log(`Returning response with the status: ${statusCode} and data: ${payloadString}`)
       })
     })
   }

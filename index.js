@@ -12,7 +12,7 @@ const server = require('./server')
 
 // instantiate the HTTP server
 const httpServer = http.createServer((req, res) => {
-  server.init(req, res, router, handlers)
+  server.init(req, res)
 })
 
 // Start the HTTP server
@@ -27,31 +27,10 @@ const options = {
 }
 
 const httpsServer = https.createServer(options, (req, res) => {
-  server.init(req, res, router, handlers)
+  server.init(req, res)
 })
 
 // Start the HTTP server
 httpsServer.listen(config.httpsPort, () => {
   console.log(`The server listeninig on port ${config.httpsPort}`)
 })
-
-// define the handlers object
-const handlers = {}
-
-// sample handler
-handlers.sample = (data, cb) => {
-  // Callback a http status code, and a payload object
-  // eslint-disable-next-line standard/no-callback-literal
-  cb(406, { name: 'sample handler' })
-}
-
-// not found handler
-handlers.notFound = (data, cb) => {
-  // eslint-disable-next-line standard/no-callback-literal
-  cb(404)
-}
-
-// define a request object
-const router = {
-  'sample': handlers.sample
-}
