@@ -2,10 +2,10 @@
 const handlers = {}
 
 // sample handler
-handlers.sample = (data, cb) => {
-  // Callback a http status code, and a payload object
+handlers.ping = (data, cb) => {
+  // Callback a http status code
   // eslint-disable-next-line standard/no-callback-literal
-  cb(406, { name: 'sample handler' })
+  cb(200)
 }
 
 // not found handler
@@ -16,7 +16,7 @@ handlers.notFound = (data, cb) => {
 
 // define a request object
 const router = {
-  'sample': handlers.sample
+  'api/v1/ping': handlers.ping
 }
 
 module.exports = {

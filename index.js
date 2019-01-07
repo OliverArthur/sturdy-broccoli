@@ -30,7 +30,7 @@ const httpsServer = https.createServer(options, (req, res) => {
   server.init(req, res)
 })
 
-// Start the HTTP server
+// Start the HTTPS server
 httpsServer.listen(config.httpsPort, () => {
   console.log(`The server listeninig on port ${config.httpsPort}`)
 })
