@@ -1,16 +1,26 @@
+/* eslint-disable standard/no-callback-literal */
 // define the handlers object
 const handlers = {}
 
-// sample handler
+// user handler
+handlers.user = (data, cb) => {
+  const allowMethods = ['post', 'get', 'put', 'delete']
+
+  if (allowMethods.indexOf(data.method) > -1) {
+    handlers._users[data.method](data, cb)
+  } else {
+    cb(405)
+  }
+}
+
+// ping handler
 handlers.ping = (data, cb) => {
   // Callback a http status code
-  // eslint-disable-next-line standard/no-callback-literal
   cb(200)
 }
 
 // not found handler
 handlers.notFound = (data, cb) => {
-  // eslint-disable-next-line standard/no-callback-literal
   cb(404)
 }
 
