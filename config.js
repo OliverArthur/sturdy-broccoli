@@ -9,14 +9,16 @@ const enviroments = {}
 enviroments.development = {
   httpPort: 3000,
   httpsPort: 3001,
-  envName: 'development'
+  envName: 'development',
+  secret: 'thisMySecretPower'
 }
 
 // production env
 enviroments.production = {
   httpPort: 5000,
-  httpsPort: 3001,
-  envName: 'production'
+  httpsPort: 5001,
+  envName: 'production',
+  secret: 'thisMySecretPower'
 }
 
 // determine which env was passed
